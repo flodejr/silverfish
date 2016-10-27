@@ -17,7 +17,8 @@
         mage,
         lordjaraxxus,
         ragnarosthefirelord,
-        hogger
+        hogger,
+        all
     }
 
     public sealed class Hrtprozis
@@ -285,6 +286,7 @@
         {
             switch (s)
             {
+                case "all": return HeroEnum.all;
                 case "druid": return HeroEnum.druid;
                 case "hunter": return HeroEnum.hunter;
                 case "mage": return HeroEnum.mage;
@@ -316,6 +318,7 @@
                 case HeroEnum.thief: return TAG_CLASS.ROGUE;
                 case HeroEnum.warlock: return TAG_CLASS.WARLOCK;
                 case HeroEnum.warrior: return TAG_CLASS.WARRIOR;
+                case HeroEnum.all: return TAG_CLASS.ALL;
                 default: return TAG_CLASS.INVALID;
             }
         }

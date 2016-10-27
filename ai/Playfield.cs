@@ -71,9 +71,11 @@ namespace HREngine.Bots
         public int anzEnemyTundrarhino;
         public int anzOwnTimberWolfs;
         public int anzEnemyTimberWolfs;
-        public int anzMurlocWarleader;
+        public int anzOwnMurlocWarleader;
+        public int anzEnemyMurlocWarleader;
         public int anzAcidmaw;
-        public int anzGrimscaleOracle;
+        public int anzOwnGrimscaleOracle;
+        public int anzEnemyGrimscaleOracle;
         public int anzOwnShadowfiends;
         public int anzEnemyShadowfiends;
         public int anzOwnAuchenaiSoulpriest;
@@ -469,8 +471,10 @@ namespace HREngine.Bots
             this.anzEnemyTundrarhino = 0;
             this.anzOwnTimberWolfs = 0;
             this.anzEnemyTimberWolfs = 0;
-            this.anzMurlocWarleader = 0;
-            this.anzGrimscaleOracle = 0;
+            this.anzOwnMurlocWarleader = 0;
+            this.anzEnemyMurlocWarleader = 0;
+            this.anzOwnGrimscaleOracle = 0;
+            this.anzEnemyGrimscaleOracle = 0;
             this.anzOwnAuchenaiSoulpriest = 0;
             this.anzEnemyAuchenaiSoulpriest = 0;
             this.anzOwnSorcerersApprentice = 0;
@@ -605,99 +609,130 @@ namespace HREngine.Bots
                 spellpower = spellpower + m.spellpower;
                 if (m.silenced) continue;
                 //spellpower += m.handcard.card.spellpowervalue; // its allready in m.spellpower! (if you are updating it in silverfish.getMinions() :P)
-                if (m.name == CardDB.cardName.prophetvelen) this.doublepriest++;
-
-                if (m.name == CardDB.cardName.weespellstopper)
-                {
-                    if (i > 0) this.ownMinions[i - 1].cantBeTargetedBySpellsOrHeroPowers = true;
-                    if (i < anz - 1) this.ownMinions[i + 1].cantBeTargetedBySpellsOrHeroPowers = true;
-                }
-                if (m.name == CardDB.cardName.faeriedragon || m.name == CardDB.cardName.laughingsister ||
-                    m.name == CardDB.cardName.spectralknight || m.name == CardDB.cardName.arcanenullifierx21 ||
-                    m.name == CardDB.cardName.soggoththeslitherer) m.cantBeTargetedBySpellsOrHeroPowers = true;
-
-                if (m.name == CardDB.cardName.pintsizedsummoner)
-                {
-                    this.anzPintSizedSummoner++;
-                }
-
-                if (m.name == CardDB.cardName.manawraith)
-                {
-                    this.anzManaWraith++;
-                }
-                if (m.name == CardDB.cardName.nerubarweblord)
-                {
-                    this.anzNerubarWeblord++;
-                }
-                if (m.name == CardDB.cardName.venturecomercenary)
-                {
-                    this.anzVentureCoMercenary++;
-                }
-                if (m.name == CardDB.cardName.summoningportal)
-                {
-                    this.anzSummoningPortal++;
-                }
-
-                if (m.name == CardDB.cardName.baronrivendare)
-                {
-                    this.ownBaronRivendare++;
-                }
-                if (m.name == CardDB.cardName.kelthuzad)
-                {
-                    this.needGraveyard = true;
-                }
-
-                //TGT-----
-
-                if (m.name == CardDB.cardName.coldarradrake) this.anzOwnGarrisonCommander += 1000;
-                if (m.name == CardDB.cardName.garrisoncommander) this.anzOwnGarrisonCommander += 1;
-                if (m.name == CardDB.cardName.fallenhero) this.anzOwnFallenHeros += 1;
-                if (m.name == CardDB.cardName.shadowfiend) this.anzOwnShadowfiends += 1;
-                if (m.name == CardDB.cardName.wilfredfizzlebang) this.anzOwnFizzlebang += 1;
-                if (m.name == CardDB.cardName.buccaneer) this.anzOwnBuccaneer += 1;
-                if (m.name == CardDB.cardName.aviana) this.anzOwnAviana += 1;
-                if (m.name == CardDB.cardName.acidmaw) this.anzAcidmaw += 1;
-                if (m.name == CardDB.cardName.warhorsetrainer) this.anzOwnWarhorseTrainer += 1;
-                if (m.name == CardDB.cardName.maidenofthelake) this.anzOwnMaidenOfTheLake += 1;
-                if (m.name == CardDB.cardName.warsongcommander) this.anzOwnWarsongCommanders += 1;
-
-                if (m.name == CardDB.cardName.raidleader || m.name == CardDB.cardName.leokk) this.anzOwnRaidleader++;
-                if (m.name == CardDB.cardName.malganis) this.anzOwnMalGanis++;
-                if (m.name == CardDB.cardName.stormwindchampion) this.anzOwnStormwindChamps++;
-                if (m.name == CardDB.cardName.tundrarhino) this.anzOwnTundrarhino++;
-                if (m.name == CardDB.cardName.timberwolf) this.anzOwnTimberWolfs++;
-                if (m.name == CardDB.cardName.murlocwarleader) this.anzMurlocWarleader++;
-                if (m.name == CardDB.cardName.grimscaleoracle) this.anzGrimscaleOracle++;
-                if (m.name == CardDB.cardName.auchenaisoulpriest) this.anzOwnAuchenaiSoulpriest++;
-
-                if (m.name == CardDB.cardName.nagaseawitch) this.anzOwnNagaSeaWitch++;
-
-                if (m.name == CardDB.cardName.fallenhero) this.anzOwnFallenHeros++;
-
-                if (m.name == CardDB.cardName.brannbronzebeard) this.anzOwnBranns++;
-
-                if (m.name == CardDB.cardName.fandralstaghelm) this.anzOwnFandralStaghelm++;
-
-                if (m.name == CardDB.cardName.animatedarmor) this.anzOwnAnimatedArmor++;
-
-                if (m.name == CardDB.cardName.sorcerersapprentice)
-                {
-                    this.anzOwnSorcerersApprentice++;
-                }
-                if (m.name == CardDB.cardName.southseacaptain) this.anzOwnSouthseacaptain++;
-                if (m.name == CardDB.cardName.mechwarper)
-                {
-                    this.anzOwnMechwarper++;
-                    this.anzOwnMechwarperStarted++;
-                }
-                if (m.name == CardDB.cardName.steamwheedlesniper && this.ownHeroName == HeroEnum.hunter)
-                {
-                    this.weHaveSteamwheedleSniper = true;
-                }
-
 
                 switch (m.name)
                 {
+                    case CardDB.cardName.prophetvelen:
+                        this.doublepriest++;
+                        continue;
+                    case CardDB.cardName.weespellstopper:
+                        if (i > 0) this.ownMinions[i - 1].cantBeTargetedBySpellsOrHeroPowers = true;
+                        if (i < anz - 1) this.ownMinions[i + 1].cantBeTargetedBySpellsOrHeroPowers = true;
+                        continue;
+                    case CardDB.cardName.faeriedragon:
+                    case CardDB.cardName.laughingsister:
+                    case CardDB.cardName.spectralknight:
+                    case CardDB.cardName.arcanenullifierx21:
+                    case CardDB.cardName.soggoththeslitherer:
+                        m.cantBeTargetedBySpellsOrHeroPowers = true;
+                        continue;
+                    case CardDB.cardName.pintsizedsummoner:
+                        this.anzPintSizedSummoner++;
+                        continue;
+                    case CardDB.cardName.manawraith:
+                        this.anzManaWraith++;
+                        continue;
+                    case CardDB.cardName.nerubarweblord:
+                        this.anzNerubarWeblord++;
+                        continue;
+                    case CardDB.cardName.venturecomercenary:
+                        this.anzVentureCoMercenary++;
+                        continue;
+                    case CardDB.cardName.summoningportal:
+                        this.anzSummoningPortal++;
+                        continue;
+                    case CardDB.cardName.baronrivendare:
+                        this.ownBaronRivendare++;
+                        continue;
+                    case CardDB.cardName.kelthuzad:
+                        this.needGraveyard = true;
+                        continue;
+                    case CardDB.cardName.coldarradrake:
+                        this.anzOwnGarrisonCommander += 1000;
+                        continue;
+                    case CardDB.cardName.garrisoncommander:
+                        this.anzOwnGarrisonCommander++;
+                        continue;
+                    case CardDB.cardName.fallenhero:
+                        this.anzOwnFallenHeros++;
+                        continue;
+                    case CardDB.cardName.shadowfiend:
+                        this.anzOwnShadowfiends++;
+                        continue;
+                    case CardDB.cardName.wilfredfizzlebang:
+                        this.anzOwnFizzlebang++;
+                        continue;
+                    case CardDB.cardName.buccaneer:
+                        this.anzOwnBuccaneer++;
+                        continue;
+                    case CardDB.cardName.aviana:
+                        this.anzOwnAviana++;
+                        continue;
+                    case CardDB.cardName.acidmaw:
+                        this.anzAcidmaw++;
+                        continue;
+                    case CardDB.cardName.warhorsetrainer:
+                        this.anzOwnWarhorseTrainer++;
+                        continue;
+                    case CardDB.cardName.maidenofthelake:
+                        this.anzOwnMaidenOfTheLake++;
+                        continue;
+                    case CardDB.cardName.warsongcommander:
+                        this.anzOwnWarsongCommanders++;
+                        continue;
+                    case CardDB.cardName.raidleader:
+                    case CardDB.cardName.leokk:
+                        this.anzOwnRaidleader++;
+                        continue;
+                    case CardDB.cardName.malganis:
+                        this.anzOwnMalGanis++;
+                        continue;
+                    case CardDB.cardName.stormwindchampion:
+                        this.anzOwnStormwindChamps++;
+                        continue;
+                    case CardDB.cardName.tundrarhino:
+                        this.anzOwnTundrarhino++;
+                        continue;
+                    case CardDB.cardName.timberwolf:
+                        this.anzOwnTimberWolfs++;
+                        continue;
+                    case CardDB.cardName.murlocwarleader:
+                        this.anzOwnMurlocWarleader++;
+                        continue;
+                    case CardDB.cardName.grimscaleoracle:
+                        this.anzOwnGrimscaleOracle++;
+                        continue;
+                    case CardDB.cardName.auchenaisoulpriest:
+                        anzOwnAuchenaiSoulpriest++;
+                        continue;
+                    case CardDB.cardName.nagaseawitch:
+                        this.anzOwnNagaSeaWitch++;
+                        continue;
+                    case CardDB.cardName.brannbronzebeard:
+                        this.anzOwnBranns++;
+                        continue;
+                    case CardDB.cardName.fandralstaghelm:
+                        this.anzOwnFandralStaghelm++;
+                        continue;
+                    case CardDB.cardName.animatedarmor:
+                        this.anzOwnAnimatedArmor++;
+                        continue;
+                    case CardDB.cardName.sorcerersapprentice:
+                        this.anzOwnSorcerersApprentice++;
+                        continue;
+                    case CardDB.cardName.southseacaptain:
+                        this.anzOwnSouthseacaptain++;
+                        continue;
+                    case CardDB.cardName.mechwarper:
+                        this.anzOwnMechwarper++;
+                        this.anzOwnMechwarperStarted++;
+                        continue;
+                    case CardDB.cardName.steamwheedlesniper:
+                        if (this.ownHeroAblility.card.name == CardDB.cardName.steadyshot || this.ownHeroAblility.card.name == CardDB.cardName.ballistashot)
+                        {
+                            this.weHaveSteamwheedleSniper = true;
+                        }
+                        continue;
                     case CardDB.cardName.cloakedhuntress:
                         this.anzOwnCloakedHuntress++;
                         continue;
@@ -705,6 +740,7 @@ namespace HREngine.Bots
                         this.ownVioletIllusionist++;
                         continue;
                 }
+
             }
 
             foreach (Handmanager.Handcard hc in this.owncards)
@@ -725,88 +761,122 @@ namespace HREngine.Bots
                 
                 if (m.silenced) continue;
 
-                if (m.name == CardDB.cardName.weespellstopper)
-                {
-                    if (i > 0) this.enemyMinions[i - 1].cantBeTargetedBySpellsOrHeroPowers = true;
-                    if (i < anz - 1) this.enemyMinions[i + 1].cantBeTargetedBySpellsOrHeroPowers = true;
-                }
-                if (m.name == CardDB.cardName.faeriedragon || m.name == CardDB.cardName.laughingsister || m.name == CardDB.cardName.spectralknight || m.name == CardDB.cardName.arcanenullifierx21 || m.name == CardDB.cardName.soggoththeslitherer) m.cantBeTargetedBySpellsOrHeroPowers = true;
-
-                if (m.name == CardDB.cardName.prophetvelen) this.enemydoublepriest++;
-                if (m.name == CardDB.cardName.manawraith)
-                {
-                    this.anzManaWraith++;
-                }
-                if (m.name == CardDB.cardName.nerubarweblord)
-                {
-                    this.anzNerubarWeblord++;
-                }
-                if (m.name == CardDB.cardName.baronrivendare)
-                {
-                    this.enemyBaronRivendare++;
-                }
-                if (m.name == CardDB.cardName.kelthuzad)
-                {
-                    this.needGraveyard = true;
-                }
-
-                if (m.name == CardDB.cardName.coldarradrake)
-                {
-                    this.anzEnemyGarrisonCommander += 1000;
-                }
-
-                if (m.name == CardDB.cardName.coldarradrake) this.anzEnemyGarrisonCommander += 1000;
-                if (m.name == CardDB.cardName.garrisoncommander) this.anzEnemyGarrisonCommander += 1;
-                if (m.name == CardDB.cardName.fallenhero) this.anzEnemyFallenHeros += 1;
-                if (m.name == CardDB.cardName.shadowfiend) this.anzEnemyShadowfiends += 1;
-                if (m.name == CardDB.cardName.wilfredfizzlebang) this.anzEnemyFizzlebang += 1;
-                if (m.name == CardDB.cardName.buccaneer) this.anzEnemyBuccaneer += 1;
-                if (m.name == CardDB.cardName.aviana) this.anzEnemyAviana += 1;
-                if (m.name == CardDB.cardName.acidmaw) this.anzAcidmaw += 1;
-                if (m.name == CardDB.cardName.warhorsetrainer) this.anzEnemyWarhorseTrainer += 1;
-                if (m.name == CardDB.cardName.maidenofthelake) this.anzEnemyMaidenOfTheLake += 1;
-                if (m.name == CardDB.cardName.warsongcommander) this.anzEnemyWarsongCommanders += 1;
-
-                if (m.name == CardDB.cardName.raidleader || m.name == CardDB.cardName.leokk) this.anzEnemyRaidleader++;
-                if (m.name == CardDB.cardName.malganis) this.anzEnemyMalGanis++;
-                if (m.name == CardDB.cardName.stormwindchampion) this.anzEnemyStormwindChamps++;
-                if (m.name == CardDB.cardName.tundrarhino) this.anzEnemyTundrarhino++;
-                if (m.name == CardDB.cardName.timberwolf) this.anzEnemyTimberWolfs++;
-                if (m.name == CardDB.cardName.murlocwarleader) this.anzMurlocWarleader++;
-                if (m.name == CardDB.cardName.grimscaleoracle) this.anzGrimscaleOracle++;
-                if (m.name == CardDB.cardName.auchenaisoulpriest) this.anzEnemyAuchenaiSoulpriest++;
-
-                if (m.name == CardDB.cardName.nagaseawitch) this.anzEnemyNagaSeaWitch++;
-
-                if (m.name == CardDB.cardName.fallenhero) this.anzEnemyFallenHeros++;
-
-                if (m.name == CardDB.cardName.brannbronzebeard) this.anzEnemyBranns++;
-
-                if (m.name == CardDB.cardName.animatedarmor) this.anzEnemyAnimatedArmor++;
-
-                if (m.name == CardDB.cardName.sorcerersapprentice)
-                {
-                    this.anzEnemysorcerersapprentice++;
-                }
-                if (m.name == CardDB.cardName.southseacaptain) this.anzEnemySouthseacaptain++;
-                if (m.name == CardDB.cardName.mechwarper)
-                {
-                    this.anzEnemyMechwarper++;
-                    this.anzEnemyMechwarperStarted++;
-                }
-                if (m.name == CardDB.cardName.steamwheedlesniper && this.enemyHeroName == HeroEnum.hunter)
-                {
-                    this.enemyHaveSteamwheedleSniper = true;
-                }
-
-
-
                 switch (m.name)
                 {
+                    case CardDB.cardName.prophetvelen:
+                        this.enemydoublepriest++;
+                        continue;
+                    case CardDB.cardName.weespellstopper:
+                        if (i > 0) this.ownMinions[i - 1].cantBeTargetedBySpellsOrHeroPowers = true;
+                        if (i < anz - 1) this.ownMinions[i + 1].cantBeTargetedBySpellsOrHeroPowers = true;
+                        continue;
+                    case CardDB.cardName.faeriedragon:
+                    case CardDB.cardName.laughingsister:
+                    case CardDB.cardName.spectralknight:
+                    case CardDB.cardName.arcanenullifierx21:
+                    case CardDB.cardName.soggoththeslitherer:
+                        m.cantBeTargetedBySpellsOrHeroPowers = true;
+                        continue;
+                    case CardDB.cardName.manawraith:
+                        this.anzManaWraith++;
+                        continue;
+                    case CardDB.cardName.nerubarweblord:
+                        this.anzNerubarWeblord++;
+                        continue;
+                    case CardDB.cardName.baronrivendare:
+                        this.enemyBaronRivendare++;
+                        continue;
+                    case CardDB.cardName.kelthuzad:
+                        this.needGraveyard = true;
+                        continue;
+                    case CardDB.cardName.coldarradrake:
+                        this.anzEnemyGarrisonCommander += 1000;
+                        continue;
+                    case CardDB.cardName.garrisoncommander:
+                        this.anzEnemyGarrisonCommander++;
+                        continue;
+                    case CardDB.cardName.fallenhero:
+                        this.anzEnemyFallenHeros++;
+                        continue;
+                    case CardDB.cardName.shadowfiend:
+                        this.anzEnemyShadowfiends++;
+                        continue;
+                    case CardDB.cardName.wilfredfizzlebang:
+                        this.anzEnemyFizzlebang++;
+                        continue;
+                    case CardDB.cardName.buccaneer:
+                        this.anzEnemyBuccaneer++;
+                        continue;
+                    case CardDB.cardName.aviana:
+                        this.anzEnemyAviana++;
+                        continue;
+                    case CardDB.cardName.acidmaw:
+                        this.anzAcidmaw++;
+                        continue;
+                    case CardDB.cardName.warhorsetrainer:
+                        this.anzEnemyWarhorseTrainer++;
+                        continue;
+                    case CardDB.cardName.maidenofthelake:
+                        this.anzEnemyMaidenOfTheLake++;
+                        continue;
+                    case CardDB.cardName.warsongcommander:
+                        this.anzEnemyWarsongCommanders++;
+                        continue;
+                    case CardDB.cardName.raidleader:
+                    case CardDB.cardName.leokk:
+                        this.anzEnemyRaidleader++;
+                        continue;
+                    case CardDB.cardName.malganis:
+                        this.anzEnemyMalGanis++;
+                        continue;
+                    case CardDB.cardName.stormwindchampion:
+                        this.anzEnemyStormwindChamps++;
+                        continue;
+                    case CardDB.cardName.tundrarhino:
+                        this.anzEnemyTundrarhino++;
+                        continue;
+                    case CardDB.cardName.timberwolf:
+                        this.anzEnemyTimberWolfs++;
+                        continue;
+                    case CardDB.cardName.murlocwarleader:
+                        this.anzEnemyMurlocWarleader++;
+                        continue;
+                    case CardDB.cardName.grimscaleoracle:
+                        this.anzEnemyGrimscaleOracle++;
+                        continue;
+                    case CardDB.cardName.auchenaisoulpriest:
+                        anzEnemyAuchenaiSoulpriest++;
+                        continue;
+                    case CardDB.cardName.nagaseawitch:
+                        this.anzEnemyNagaSeaWitch++;
+                        continue;
+                    case CardDB.cardName.brannbronzebeard:
+                        this.anzEnemyBranns++;
+                        continue;
+                    case CardDB.cardName.animatedarmor:
+                        this.anzEnemyAnimatedArmor++;
+                        continue;
+                    case CardDB.cardName.sorcerersapprentice:
+                        this.anzEnemysorcerersapprentice++;
+                        continue;
+                    case CardDB.cardName.southseacaptain:
+                        this.anzEnemySouthseacaptain++;
+                        continue;
+                    case CardDB.cardName.mechwarper:
+                        this.anzEnemyMechwarper++;
+                        this.anzEnemyMechwarperStarted++;
+                        continue;
+                    case CardDB.cardName.steamwheedlesniper:
+                        if (this.ownHeroAblility.card.name == CardDB.cardName.steadyshot || this.ownHeroAblility.card.name == CardDB.cardName.ballistashot)
+                        {
+                            this.enemyHaveSteamwheedleSniper = true;
+                        }
+                        continue;
                     case CardDB.cardName.violetillusionist:
                         this.enemyVioletIllusionist++;
                         continue;
                 }
+
             }
 
             if (this.spellpower > 0 && this.ownWeaponName == CardDB.cardName.spiritclaws) this.ownSpiritclaws = true;
@@ -830,19 +900,10 @@ namespace HREngine.Bots
 
         public Playfield(Playfield p)
         {
-            shadowmadnessed = 0;
-            OwnLastDiedMinion = CardDB.cardIDEnum.None;
             revivingEnemyMinion = CardDB.cardIDEnum.None;
             revivingOwnMinion = CardDB.cardIDEnum.None;
             enemyDeckSize = 30;
             ownDeckSize = 30;
-            enemyHeroHpStarted = 30;
-            ownHeroHpStarted = 30;
-            enemyCardsCountStarted = 0;
-            ownCardsCountStarted = 0;
-            ownMobsCountStarted = 0;
-            ownWeaponAttackStarted = 0;
-            startedWithDamagedMinions = false;
             allSpellCostLess = 0;
             myCardsCostLess = 0;
             wehaveCounterspell = 0;
@@ -865,32 +926,17 @@ namespace HREngine.Bots
             attackFaceHP = 15;
             isOwnTurn = true;
             selectedChoice = -1;
-            lockandload = 0;
-            ownMistcaller = 0;
             enemyMinionsDiedTurn = 0;
             ownMinionsDiedTurn = 0;
-            anzOwnTaunt = 0;
             anzEnemyTaunt = 0;
-            embracetheshadow = 0;
-            choGall = 0;
-            blackwaterpirateStarted = 0;
             anzBlackwaterPirate = 0;
-            anzOgOwnCThun = 0;
             anzUsedOwnHeroPower = 0;
-            enemyHeroPowerAllowedQuantity = 1;
-            ownHeroPowerAllowedQuantity = 1;
             enemyHeroPowerExtraDamage = 0;
             ownHeroPowerExtraDamage = 0;
-            anzEnemyHorsemen = 0;
-            anzOwnHorsemen = 0;
             anzEnemyBolfRamshield = 0;
             anzOwnBolfRamshield = 0;
             anzEnemyChromaggus = 0;
             anzOwnChromaggus = 0;
-            anzOwnMurlocStarted = 0;
-            anzOwnPiratesStarted = 0;
-            anzEnemysorcerersapprenticeStarted = 0;
-            anzOwnsorcerersapprenticeStarted = 0;
             nextEntity = 70;
             logging = false;
             this.nextEntity = p.nextEntity;
@@ -1015,8 +1061,8 @@ namespace HREngine.Bots
             this.anzEnemyTundrarhino = p.anzEnemyTundrarhino;
             this.anzOwnTimberWolfs = p.anzOwnTimberWolfs;
             this.anzEnemyTimberWolfs = p.anzEnemyTimberWolfs;
-            this.anzMurlocWarleader = p.anzMurlocWarleader;
-            this.anzGrimscaleOracle = p.anzGrimscaleOracle;
+            this.anzOwnMurlocWarleader = p.anzOwnMurlocWarleader;
+            this.anzOwnGrimscaleOracle = p.anzOwnGrimscaleOracle;
             this.anzOwnAuchenaiSoulpriest = p.anzOwnAuchenaiSoulpriest;
             this.anzEnemyAuchenaiSoulpriest = p.anzEnemyAuchenaiSoulpriest;
             this.anzOwnSorcerersApprentice = p.anzOwnSorcerersApprentice;
@@ -1110,8 +1156,8 @@ namespace HREngine.Bots
             Swap(ref anzOwnStormwindChamps, ref anzEnemyStormwindChamps);
             Swap(ref anzOwnTundrarhino, ref anzEnemyTundrarhino);
             Swap(ref anzOwnTimberWolfs, ref anzEnemyTimberWolfs);
-            //Swap(ref anzMurlocWarleader, ref anzMurlocWarleader);//dont need to swapped, we have one int for both players
-            //Swap(ref anzGrimscaleOracle, ref anzGrimscaleOracle);//dont need to swapped, we have one int for both players
+            //Swap(ref anzOwnMurlocWarleader, ref anzOwnMurlocWarleader);//dont need to swapped, we have one int for both players
+            //Swap(ref anzOwnGrimscaleOracle, ref anzOwnGrimscaleOracle);//dont need to swapped, we have one int for both players
             Swap(ref anzOwnAuchenaiSoulpriest, ref anzEnemyAuchenaiSoulpriest);
             Swap(ref anzOwnSorcerersApprentice, ref anzEnemysorcerersapprentice);
             Swap(ref anzOwnSouthseacaptain, ref anzEnemySouthseacaptain);
@@ -1204,8 +1250,7 @@ namespace HREngine.Bots
         public int enemyCurrentRecall = 0;//only needed for enemys turn sim.
             */
 
-        enemyOptionsDoneThisTurn = 0;
-        heroPowerActivationsThisTurn = 0;
+            heroPowerActivationsThisTurn = 0;
 
         lostDamage = 0;
         lostHeal = 0;
@@ -1615,35 +1660,28 @@ namespace HREngine.Bots
 
             if (!useAOE) return mana;
 
-            if (enemyHeroNamee == HeroEnum.mage)
+            switch (enemyHeroNamee)
             {
-                mana = EnemyPlaysACard(CardDB.cardName.flamestrike, mana, playAroundProb, pap2);
-                mana = EnemyPlaysACard(CardDB.cardName.blizzard, mana, playAroundProb, pap2);
-            }
-
-            if (enemyHeroNamee == HeroEnum.hunter)
-            {
-                mana = EnemyPlaysACard(CardDB.cardName.unleashthehounds, mana, playAroundProb, pap2);
-            }
-
-            if (enemyHeroNamee == HeroEnum.priest)
-            {
-                mana = EnemyPlaysACard(CardDB.cardName.holynova, mana, playAroundProb, pap2);
-            }
-
-            if (enemyHeroNamee == HeroEnum.shaman)
-            {
-                mana = EnemyPlaysACard(CardDB.cardName.lightningstorm, mana, playAroundProb, pap2);
-            }
-
-            if (enemyHeroNamee == HeroEnum.pala)
-            {
-                mana = EnemyPlaysACard(CardDB.cardName.consecration, mana, playAroundProb, pap2);
-            }
-
-            if (enemyHeroNamee == HeroEnum.druid)
-            {
-                mana = EnemyPlaysACard(CardDB.cardName.swipe, mana, playAroundProb, pap2);
+                case HeroEnum.mage:
+                    mana = EnemyPlaysACard(CardDB.cardName.flamestrike, mana, playAroundProb, pap2);
+                    mana = EnemyPlaysACard(CardDB.cardName.blizzard, mana, playAroundProb, pap2);
+                    break;
+                case HeroEnum.hunter:
+                    mana = EnemyPlaysACard(CardDB.cardName.unleashthehounds, mana, playAroundProb, pap2);
+                    break;
+                case HeroEnum.priest:
+                    mana = EnemyPlaysACard(CardDB.cardName.holynova, mana, playAroundProb, pap2);
+                    break;
+                case HeroEnum.shaman:
+                    mana = EnemyPlaysACard(CardDB.cardName.lightningstorm, mana, playAroundProb, pap2);
+                    mana = EnemyPlaysACard(CardDB.cardName.maelstromportal, mana, playAroundProb, pap2);
+                    break;
+                case HeroEnum.pala:
+                    mana = EnemyPlaysACard(CardDB.cardName.consecration, mana, playAroundProb, pap2);
+                    break;
+                case HeroEnum.druid:
+                    mana = EnemyPlaysACard(CardDB.cardName.swipe, mana, playAroundProb, pap2);
+                    break;
             }
 
 
@@ -1653,212 +1691,252 @@ namespace HREngine.Bots
 
         public int EnemyPlaysACard(CardDB.cardName cardname, int currmana, int playAroundProb, int pap2)
         {
-
             //todo manacosts
-            if (cardname == CardDB.cardName.flamestrike && currmana >= 7)
+
+            switch (cardname)
             {
-                bool dontkill = false;
-                int prob = Probabilitymaker.Instance.getProbOfEnemyHavingCardInHand(CardDB.cardIDEnum.CS2_032, this.enemyAnzCards, this.enemyDeckSize);
-                if (playAroundProb > prob) return currmana;
-                if (pap2 > prob) dontkill = true;
-
-                List<Minion> temp = this.ownMinions;
-                int damage = getEnemySpellDamageDamage(4);
-                foreach (Minion enemy in temp)
-                {
-                    enemy.cantLowerHPbelowONE = dontkill;
-                    this.minionGetDamageOrHeal(enemy, damage);
-                    enemy.cantLowerHPbelowONE = false;
-                }
-
-                currmana -= 7;
-                return currmana;
-            }
-
-            if (cardname == CardDB.cardName.blizzard && currmana >= 6)
-            {
-                bool dontkill = false;
-                int prob = Probabilitymaker.Instance.getProbOfEnemyHavingCardInHand(CardDB.cardIDEnum.CS2_028, this.enemyAnzCards, this.enemyDeckSize);
-                if (playAroundProb > prob) return currmana;
-                if (pap2 > prob) dontkill = true;
-
-                List<Minion> temp = this.ownMinions;
-                int damage = getEnemySpellDamageDamage(2);
-                foreach (Minion enemy in temp)
-                {
-                    enemy.frozen = true;
-                    enemy.cantLowerHPbelowONE = dontkill;
-                    this.minionGetDamageOrHeal(enemy, damage);
-                    enemy.cantLowerHPbelowONE = false;
-                }
-
-                currmana -= 6;
-                return currmana;
-            }
-
-
-            if (cardname == CardDB.cardName.unleashthehounds && currmana >= 5)
-            {
-                int prob = Probabilitymaker.Instance.getProbOfEnemyHavingCardInHand(CardDB.cardIDEnum.EX1_538, this.enemyAnzCards, this.enemyDeckSize);
-                if (playAroundProb > prob) return currmana;
-
-                int anz = this.ownMinions.Count;
-                int posi = this.enemyMinions.Count - 1;
-                CardDB.Card kid = CardDB.Instance.getCardDataFromID(CardDB.cardIDEnum.EX1_538t);//hound
-                for (int i = 0; i < anz; i++)
-                {
-                    callKid(kid, posi, false);
-                }
-                currmana -= 5;
-                return currmana;
-            }
-
-
-
-
-
-            if (cardname == CardDB.cardName.holynova && currmana >= 5)
-            {
-                bool dontkill = false;
-                int prob = Probabilitymaker.Instance.getProbOfEnemyHavingCardInHand(CardDB.cardIDEnum.CS1_112, this.enemyAnzCards, this.enemyDeckSize);
-                if (playAroundProb > prob) return currmana;
-                if (pap2 > prob) dontkill = true;
-
-                List<Minion> temp = this.enemyMinions;
-                int heal = getEnemySpellHeal(2);
-                int damage = getEnemySpellDamageDamage(2);
-                foreach (Minion enemy in temp)
-                {
-                    this.minionGetDamageOrHeal(enemy, -heal);
-                }
-                this.minionGetDamageOrHeal(this.enemyHero, -heal);
-                temp = this.ownMinions;
-                foreach (Minion enemy in temp)
-                {
-                    enemy.cantLowerHPbelowONE = dontkill;
-                    this.minionGetDamageOrHeal(enemy, damage);
-                    enemy.cantLowerHPbelowONE = false;
-                }
-                this.minionGetDamageOrHeal(this.ownHero, damage);
-                currmana -= 5;
-                return currmana;
-            }
-
-
-
-
-            if (cardname == CardDB.cardName.lightningstorm && currmana >= 4)//3
-            {
-                bool dontkill = false;
-                int prob = Probabilitymaker.Instance.getProbOfEnemyHavingCardInHand(CardDB.cardIDEnum.EX1_259, this.enemyAnzCards, this.enemyDeckSize);
-                if (playAroundProb > prob) return currmana;
-                if (pap2 > prob) dontkill = true;
-
-                List<Minion> temp = this.ownMinions;
-                int damage = getEnemySpellDamageDamage(3);
-                foreach (Minion enemy in temp)
-                {
-                    enemy.cantLowerHPbelowONE = dontkill;
-                    this.minionGetDamageOrHeal(enemy, damage);
-                    enemy.cantLowerHPbelowONE = false;
-                }
-                currmana -= 3;
-                return currmana;
-            }
-
-
-
-            if (cardname == CardDB.cardName.whirlwind && currmana >= 3)//1
-            {
-                bool dontkill = false;
-                int prob = Probabilitymaker.Instance.getProbOfEnemyHavingCardInHand(CardDB.cardIDEnum.EX1_400, this.enemyAnzCards, this.enemyDeckSize);
-                if (playAroundProb > prob) return currmana;
-                if (pap2 > prob) dontkill = true;
-
-                List<Minion> temp = this.enemyMinions;
-                int damage = getEnemySpellDamageDamage(1);
-                foreach (Minion enemy in temp)
-                {
-                    this.minionGetDamageOrHeal(enemy, damage);
-                }
-                temp = this.ownMinions;
-                foreach (Minion enemy in temp)
-                {
-                    enemy.cantLowerHPbelowONE = dontkill;
-                    this.minionGetDamageOrHeal(enemy, damage);
-                    enemy.cantLowerHPbelowONE = false;
-                }
-                currmana -= 1;
-                return currmana;
-            }
-
-
-
-            if (cardname == CardDB.cardName.consecration && currmana >= 4)
-            {
-                bool dontkill = false;
-                int prob = Probabilitymaker.Instance.getProbOfEnemyHavingCardInHand(CardDB.cardIDEnum.CS2_093, this.enemyAnzCards, this.enemyDeckSize);
-                if (playAroundProb > prob) return currmana;
-                if (pap2 > prob) dontkill = true;
-
-                List<Minion> temp = this.ownMinions;
-                int damage = getEnemySpellDamageDamage(2);
-                foreach (Minion enemy in temp)
-                {
-                    enemy.cantLowerHPbelowONE = dontkill;
-                    this.minionGetDamageOrHeal(enemy, damage);
-                    enemy.cantLowerHPbelowONE = false;
-                }
-
-                this.minionGetDamageOrHeal(this.ownHero, damage);
-                currmana -= 4;
-                return currmana;
-            }
-
-
-
-            if (cardname == CardDB.cardName.swipe && currmana >= 4)
-            {
-                bool dontkill = false;
-                int prob = Probabilitymaker.Instance.getProbOfEnemyHavingCardInHand(CardDB.cardIDEnum.CS2_012, this.enemyAnzCards, this.enemyDeckSize);
-                if (playAroundProb > prob) return currmana;
-                if (pap2 > prob) dontkill = true;
-
-                int damage = getEnemySpellDamageDamage(4);
-                // all others get 1 spelldamage
-                int damage1 = getEnemySpellDamageDamage(1);
-
-                List<Minion> temp = this.ownMinions;
-                Minion target = null;
-                foreach (Minion mnn in temp)
-                {
-                    if (mnn.Hp <= damage || mnn.handcard.card.isSpecialMinion || target == null)
+                case CardDB.cardName.flamestrike:
+                    if (currmana >= 7)
                     {
-                        target = mnn;
+                        if (wehaveCounterspell == 0)
+                        {
+                            bool dontkill = false;
+                            int prob = Probabilitymaker.Instance.getProbOfEnemyHavingCardInHand(CardDB.cardIDEnum.CS2_032, this.enemyAnzCards, this.enemyDeckSize);
+                            if (playAroundProb > prob) return currmana;
+                            if (pap2 > prob) dontkill = true;
+
+                            List<Minion> temp = this.ownMinions;
+                            int damage = getEnemySpellDamageDamage(4);
+                            foreach (Minion enemy in temp)
+                            {
+                                enemy.cantLowerHPbelowONE = dontkill;
+                                this.minionGetDamageOrHeal(enemy, damage);
+                                enemy.cantLowerHPbelowONE = false;
+                            }
+                        }
+                        else wehaveCounterspell++;
+                        currmana -= 7;
                     }
-                }
-                foreach (Minion mnn in temp.ToArray())
-                {
-                    if (target != null && mnn.entityID == target.entityID)
+                    break;
+
+                case CardDB.cardName.blizzard:
+                    if (currmana >= 6)
                     {
-                        mnn.cantLowerHPbelowONE = dontkill;
-                        this.minionGetDamageOrHeal(mnn, damage);
-                        mnn.cantLowerHPbelowONE = false;
+                        if (wehaveCounterspell == 0)
+                        {
+                            bool dontkill = false;
+                            int prob = Probabilitymaker.Instance.getProbOfEnemyHavingCardInHand(CardDB.cardIDEnum.CS2_028, this.enemyAnzCards, this.enemyDeckSize);
+                            if (playAroundProb > prob) return currmana;
+                            if (pap2 > prob) dontkill = true;
+
+                            List<Minion> temp = this.ownMinions;
+                            int damage = getEnemySpellDamageDamage(2);
+                            foreach (Minion enemy in temp)
+                            {
+                                enemy.frozen = true;
+                                enemy.cantLowerHPbelowONE = dontkill;
+                                this.minionGetDamageOrHeal(enemy, damage);
+                                enemy.cantLowerHPbelowONE = false;
+                            }
+                        }
+                        else wehaveCounterspell++;
+                        currmana -= 6;
                     }
-                    else
+                    break;
+
+                case CardDB.cardName.unleashthehounds:
+                    if (currmana >= 4)//3
                     {
-                        mnn.cantLowerHPbelowONE = dontkill;
-                        this.minionGetDamageOrHeal(mnn, damage1);
-                        mnn.cantLowerHPbelowONE = false;
+                        if (wehaveCounterspell == 0)
+                        {
+                            bool dontkill = false;
+                            int prob = Probabilitymaker.Instance.getProbOfEnemyHavingCardInHand(CardDB.cardIDEnum.EX1_538, this.enemyAnzCards, this.enemyDeckSize);
+                            if (playAroundProb > prob) return currmana;
+                            if (pap2 > prob) dontkill = true;
+
+                            int anz = this.ownMinions.Count;
+                            int posi = this.enemyMinions.Count - 1;
+                            CardDB.Card kid = CardDB.Instance.getCardDataFromID(CardDB.cardIDEnum.EX1_538t);//hound
+                            for (int i = 0; i < anz; i++)
+                            {
+                                callKid(kid, posi, false);
+                            }
+                        }
+                        else wehaveCounterspell++;
+                        currmana -= 3;
                     }
-                }
-                currmana -= 4;
-                return currmana;
+                    break;
+
+                case CardDB.cardName.holynova:
+                    if (currmana >= 5)
+                    {
+                        if (wehaveCounterspell == 0)
+                        {
+                            bool dontkill = false;
+                            int prob = Probabilitymaker.Instance.getProbOfEnemyHavingCardInHand(CardDB.cardIDEnum.CS1_112, this.enemyAnzCards, this.enemyDeckSize);
+                            if (playAroundProb > prob) return currmana;
+                            if (pap2 > prob) dontkill = true;
+
+                            List<Minion> temp = this.enemyMinions;
+                            int heal = getEnemySpellHeal(2);
+                            int damage = getEnemySpellDamageDamage(2);
+                            foreach (Minion enemy in temp)
+                            {
+                                this.minionGetDamageOrHeal(enemy, -heal);
+                            }
+                            this.minionGetDamageOrHeal(this.enemyHero, -heal);
+                            temp = this.ownMinions;
+                            foreach (Minion enemy in temp)
+                            {
+                                enemy.cantLowerHPbelowONE = dontkill;
+                                this.minionGetDamageOrHeal(enemy, damage);
+                                enemy.cantLowerHPbelowONE = false;
+                            }
+                            this.minionGetDamageOrHeal(this.ownHero, damage);
+                        }
+                        else wehaveCounterspell++;
+                        currmana -= 5;
+                    }
+                    break;
+
+                case CardDB.cardName.lightningstorm:
+                    if (currmana >= 4)//3
+                    {
+                        if (wehaveCounterspell == 0)
+                        {
+                            bool dontkill = false;
+                            int prob = Probabilitymaker.Instance.getProbOfEnemyHavingCardInHand(CardDB.cardIDEnum.EX1_259, this.enemyAnzCards, this.enemyDeckSize);
+                            if (playAroundProb > prob) return currmana;
+                            if (pap2 > prob) dontkill = true;
+
+                            List<Minion> temp = this.ownMinions;
+                            int damage = getEnemySpellDamageDamage(3);
+                            foreach (Minion enemy in temp)
+                            {
+                                enemy.cantLowerHPbelowONE = dontkill;
+                                this.minionGetDamageOrHeal(enemy, damage);
+                                enemy.cantLowerHPbelowONE = false;
+                            }
+                        }
+                        else wehaveCounterspell++;
+                        currmana -= 3;
+                    }
+                    break;
+
+                case CardDB.cardName.maelstromportal:
+                    if (currmana >= 3)//2
+                    {
+                        if (wehaveCounterspell == 0)
+                        {
+                            bool dontkill = false;
+                            int prob = Probabilitymaker.Instance.getProbOfEnemyHavingCardInHand(CardDB.cardIDEnum.KAR_073, this.enemyAnzCards, this.enemyDeckSize);
+                            if (playAroundProb > prob) return currmana;
+                            if (pap2 > prob) dontkill = true;
+
+                            List<Minion> temp = this.ownMinions;
+                            int damage = getEnemySpellDamageDamage(1);
+                            foreach (Minion enemy in temp)
+                            {
+                                enemy.cantLowerHPbelowONE = dontkill;
+                                this.minionGetDamageOrHeal(enemy, damage);
+                                enemy.cantLowerHPbelowONE = false;
+                            }
+                        }
+                        else wehaveCounterspell++;
+                        currmana -= 2;
+                    }
+                    break;
+
+                case CardDB.cardName.whirlwind:
+                    if (currmana >= 3)//1
+                    {
+                        if (wehaveCounterspell == 0)
+                        {
+                            bool dontkill = false;
+                            int prob = Probabilitymaker.Instance.getProbOfEnemyHavingCardInHand(CardDB.cardIDEnum.EX1_400, this.enemyAnzCards, this.enemyDeckSize);
+                            if (playAroundProb > prob) return currmana;
+                            if (pap2 > prob) dontkill = true;
+
+                            List<Minion> temp = this.enemyMinions;
+                            int damage = getEnemySpellDamageDamage(1);
+                            foreach (Minion enemy in temp)
+                            {
+                                this.minionGetDamageOrHeal(enemy, damage);
+                            }
+                            temp = this.ownMinions;
+                            foreach (Minion enemy in temp)
+                            {
+                                enemy.cantLowerHPbelowONE = dontkill;
+                                this.minionGetDamageOrHeal(enemy, damage);
+                                enemy.cantLowerHPbelowONE = false;
+                            }
+                        }
+                        else wehaveCounterspell++;
+                        currmana -= 1;
+                    }
+                    break;
+
+                case CardDB.cardName.consecration:
+                    if (currmana >= 4)
+                    {
+                        if (wehaveCounterspell == 0)
+                        {
+                            bool dontkill = false;
+                            int prob = Probabilitymaker.Instance.getProbOfEnemyHavingCardInHand(CardDB.cardIDEnum.CS2_093, this.enemyAnzCards, this.enemyDeckSize);
+                            if (playAroundProb > prob) return currmana;
+                            if (pap2 > prob) dontkill = true;
+
+                            List<Minion> temp = this.ownMinions;
+                            int damage = getEnemySpellDamageDamage(2);
+                            foreach (Minion enemy in temp)
+                            {
+                                enemy.cantLowerHPbelowONE = dontkill;
+                                this.minionGetDamageOrHeal(enemy, damage);
+                                enemy.cantLowerHPbelowONE = false;
+                            }
+
+                            this.minionGetDamageOrHeal(this.ownHero, damage);
+                        }
+                        else wehaveCounterspell++;
+                        currmana -= 4;
+                    }
+                    break;
+
+                case CardDB.cardName.swipe:
+                    if (currmana >= 4)
+                    {
+                        if (wehaveCounterspell == 0)
+                        {
+                            bool dontkill = false;
+                            int prob = Probabilitymaker.Instance.getProbOfEnemyHavingCardInHand(CardDB.cardIDEnum.CS2_012, this.enemyAnzCards, this.enemyDeckSize);
+                            if (playAroundProb > prob) return currmana;
+                            if (pap2 > prob) dontkill = true;
+
+                            int damage4 = getEnemySpellDamageDamage(4);
+                            // all others get 1 spelldamage
+                            int damage1 = getEnemySpellDamageDamage(1);
+
+                            List<Minion> temp = this.ownMinions;
+                            Minion target = null;
+                            foreach (Minion mnn in temp)
+                            {
+                                if (mnn.Hp <= damage4 || mnn.handcard.card.isSpecialMinion || target == null)
+                                {
+                                    target = mnn;
+                                }
+                            }
+                            foreach (Minion mnn in temp.ToArray())
+                            {
+                                mnn.cantLowerHPbelowONE = dontkill;
+                                this.minionGetDamageOrHeal(mnn, target != null && mnn.entityID == target.entityID ? damage4 : damage1);
+                                mnn.cantLowerHPbelowONE = false;
+                            }
+                        }
+                        else wehaveCounterspell++;
+                        currmana -= 4;
+                    }
+                    break;
             }
-
-
-
-
 
             return currmana;
         }
@@ -2826,7 +2904,6 @@ namespace HREngine.Bots
                 this.enemyHero.numAttacksThisTurn = 0;
                 this.enemyAbilityReady = true;
                 this.enemyHero.updateReadyness();
-                this.enemyOptionsDoneThisTurn = 0;
                 this.heroPowerActivationsThisTurn = 0;
 
                 this.anzEnemyMillhouseManastorm = false;
@@ -4676,12 +4753,6 @@ namespace HREngine.Bots
                     mnn.handcard.card.sim_card.onMinionIsSummoned(this, mnn, m);
                 }
 
-                foreach (Minion mnn in this.enemyMinions)
-                {
-                    if (mnn.silenced) continue;
-                    if (mnn.name == CardDB.cardName.murloctidecaller) mnn.handcard.card.sim_card.onMinionIsSummoned(this, mnn, m);
-                }
-
                 if (this.ownWeaponName == CardDB.cardName.spiritclaws && !this.ownSpiritclaws)
                 {
                     if (this.spellpower > 0 || m.handcard.card.Spellpower)
@@ -5678,27 +5749,40 @@ namespace HREngine.Bots
 
             if (m.handcard.card.race == TAG_RACE.MURLOC)
             {
-                angr += 2 * anzMurlocWarleader + anzGrimscaleOracle;
-                vert += anzMurlocWarleader;
-
+                if (m.own)
+                {
+                    angr += 2 * anzOwnMurlocWarleader + anzOwnGrimscaleOracle;
+                    vert += anzOwnMurlocWarleader;
+                }
+                else
+                {
+                    angr += 2 * anzEnemyMurlocWarleader + anzEnemyGrimscaleOracle;
+                    vert += anzEnemyMurlocWarleader;
+                }
             }
 
             if (!m.silenced) // if they are not silenced, these minions will give a buff, but cant buff themselfes
             {
-                if (m.name == CardDB.cardName.raidleader || m.name == CardDB.cardName.leokk || m.name == CardDB.cardName.timberwolf) angr--;
-                if (m.name == CardDB.cardName.stormwindchampion || m.name == CardDB.cardName.southseacaptain)
+                switch (m.name)
                 {
-                    angr--;
-                    vert--;
-                }
-                if (m.name == CardDB.cardName.murlocwarleader)
-                {
-                    angr -= 2;
-                    vert--;
-                }
-                if (m.name == CardDB.cardName.grimscaleoracle)
-                {
-                    angr--;
+                    case CardDB.cardName.raidleader:
+                    case CardDB.cardName.leokk:
+                    case CardDB.cardName.timberwolf:
+                    case CardDB.cardName.grimscaleoracle:
+                        angr--;
+                        break;
+                    case CardDB.cardName.stormwindchampion:
+                    case CardDB.cardName.southseacaptain:
+                        angr--;
+                        vert--;
+                        break;
+                    case CardDB.cardName.murlocwarleader:
+                        if (get)
+                        {
+                            angr -= 2;
+                            vert--;
+                        }
+                        break;
                 }
             }
 
