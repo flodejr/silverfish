@@ -50,7 +50,7 @@ namespace HREngine.Bots
             this.netAddress = "127.0.0.1"; // address where the bot is running
             this.tcpPort = 14804; // TCP port to connect on
 
-            this.logBuffer = 0; // max log messages to buffer before writing to disk
+            this.logBuffer = 100; // max log messages to buffer before writing to disk
 
             //###########################################################
 
@@ -127,7 +127,7 @@ namespace HREngine.Bots
         public string netAddress = "127.0.0.1";
         public int tcpPort = 14804;
 
-        public int logBuffer = 0;
+        public int logBuffer = 100;
 
         public string path = "";
         public string logpath = "";
@@ -648,7 +648,8 @@ namespace HREngine.Bots
                         Helpfunctions.Instance.ErrorLog(ignoring + searchword);
                     }
                 }
-
+                //always enabled now so ignore user setting
+                /*
                 searchword = "logbuffer=";
                 if (s.StartsWith(searchword))
                 {
@@ -662,7 +663,7 @@ namespace HREngine.Bots
                         Helpfunctions.Instance.ErrorLog(ignoring + searchword);
                     }
                 }
-
+                */
 
 
             }

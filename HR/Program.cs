@@ -2293,7 +2293,7 @@ namespace HREngine.Bots
             {
                 Instance.flushLogg();
                 Instance.flushErrorLog();
-                await Task.Delay(1000, cancellationToken);
+                await Task.Delay(250, cancellationToken);
             }
         }
 
