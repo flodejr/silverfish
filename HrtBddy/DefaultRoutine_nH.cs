@@ -1338,6 +1338,8 @@ def Execute():
         {
             Log.InfoFormat("[GameEventManagerOnGameOver] {0}{2} => {1}.", gameOverEventArgs.Result,
                 GameEventManager.Instance.LastGamePresenceStatus, gameOverEventArgs.Conceded ? " [conceded]" : "");
+            if (gameOverEventArgs.Result == GameOverFlag.Victory) Helpfunctions.Instance.logg("Match Won!");
+            else Helpfunctions.Instance.logg("Match Lost :(");
         }
 
         private void GameEventManagerOnNewGame(object sender, NewGameEventArgs newGameEventArgs)
