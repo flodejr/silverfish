@@ -327,6 +327,14 @@ namespace HREngine.Bots
                 }
             }*/
 
+            
+            if (p.mana > Ai.Instance.nextMoveGuess.mana && p.ownMaxMana > Ai.Instance.nextMoveGuess.ownMaxMana && Ai.Instance.bestActions.Count > 0)
+            {
+                Helpfunctions.Instance.logg("You may have roped last turn!");
+                //Helpfunctions.Instance.logg("Mana: " + p.mana + ">" + Ai.Instance.nextMoveGuess.mana);
+                //Helpfunctions.Instance.logg("Max Mana: " + p.ownMaxMana + ">" + Ai.Instance.nextMoveGuess.ownMaxMana);
+                //Helpfunctions.Instance.logg("Actions left: " + Ai.Instance.bestActions.Count);
+            }
 
             Helpfunctions.Instance.ErrorLog("calculating stuff... " + DateTime.Now.ToString("HH:mm:ss.ffff"));
             
