@@ -12,12 +12,20 @@ namespace HREngine.Bots
 
         public override void getBattlecryEffect(Playfield p, Minion own, Minion target, int choice)
         {
-            int pos = (own.own) ? p.ownMinions.Count : p.enemyMinions.Count;
-            p.callKid(kid, pos, own.own);
+            int count = (own.own) ? p.ownMinions.Count : p.enemyMinions.Count;
 
-            List<Minion> temp = (own.own) ? p.ownMinions : p.enemyMinions;
-            temp[pos].Hp = 1;
-            temp[pos].Angr = 1;
+            p.callKid(kid, own.zonepos, own.own, true);
+
+            if (count < 6)
+            {
+                List<Minion> temp = (own.own) ? p.ownMinions : p.enemyMinions;
+                Minion kidminion = temp[own.zonepos-1]; //barnes isn't on the playfield yet but the kid is where barnes will be
+
+                int angr = 1 - kidminion.Angr;
+                int hp = 1 - kidminion.maxHp;
+
+                p.minionGetBuffed(kidminion, angr, hp);
+            }
         }
     }
 }
