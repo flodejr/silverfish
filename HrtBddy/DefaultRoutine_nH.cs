@@ -1344,6 +1344,10 @@ def Execute():
         {
             Log.InfoFormat("[GameEventManagerOnNewGame]");
             Silverfish.Instance.setnewLoggFile();
+            HREngine.Bots.Settings.Instance.loggCleanPath();
+            Mulligan.Instance.loggCleanPath();
+            Discovery.Instance.loggCleanPath();
+            ComboBreaker.Instance.loggCleanPath();
             //Hrtprozis.Instance.clearAll();
             //Hrtprozis.Instance.ownHeroStartClass = TAG_CLASS.INVALID;
             //Hrtprozis.Instance.enemyHeroStartClass = TAG_CLASS.INVALID;
