@@ -966,7 +966,7 @@ namespace HREngine.Bots
 
     public sealed class Silverfish
     {
-        public string versionnumber = "123.7SE";
+        public string versionnumber = "124.0SE";
         private bool singleLog = false;
         private string botbehave = "rush";
         public bool waitingForSilver = false;
@@ -1230,13 +1230,17 @@ namespace HREngine.Bots
                     }
                 }
             }
-            /*
-            if (p.mana > Ai.Instance.nextMoveGuess.mana && p.ownMaxMana > Ai.Instance.nextMoveGuess.ownMaxMana && Ai.Instance.nextMoveGuess.playactions.Count > 0)
+            
+            if (p.mana > Ai.Instance.nextMoveGuess.mana && p.ownMaxMana > Ai.Instance.nextMoveGuess.ownMaxMana && Ai.Instance.bestActions.Count > 0)
             {
                 Helpfunctions.Instance.logg("You may have roped last turn!");
-            }*/
+                //Helpfunctions.Instance.logg("Mana: " + p.mana + ">" + Ai.Instance.nextMoveGuess.mana);
+                //Helpfunctions.Instance.logg("Max Mana: " + p.ownMaxMana + ">" + Ai.Instance.nextMoveGuess.ownMaxMana);
+                //Helpfunctions.Instance.logg("Actions left: " + Ai.Instance.bestActions.Count);
+            }
 
             Helpfunctions.Instance.ErrorLog("calculating stuff... " + DateTime.Now.ToString("HH:mm:ss.ffff"));
+
             if (runExtern)
             {
                 Helpfunctions.Instance.logg("recalc-check###########");
@@ -2293,7 +2297,7 @@ namespace HREngine.Bots
             {
                 Instance.flushLogg();
                 Instance.flushErrorLog();
-                await Task.Delay(1000, cancellationToken);
+                await Task.Delay(250, cancellationToken);
             }
         }
 

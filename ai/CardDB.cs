@@ -2617,6 +2617,8 @@ namespace HREngine.Bots
             XXX_111e,
             XXX_112,
             XXX_113,
+            XXX_115,
+            XXX_115e,
             XXX_999_Crash,
             PlaceholderCard,
         }

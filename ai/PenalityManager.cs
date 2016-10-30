@@ -1724,11 +1724,10 @@ namespace HREngine.Bots
             // penalize playing hero power after spell dmg cards
             if (name == CardDB.cardName.totemiccall || name == CardDB.cardName.totemicslam)  // shaman
             {
-                if (p.ownMinions.Find(m => m.name == CardDB.cardName.wrathofairtotem) != null) return 0;  // already have spelldmg totem, so no penalty
-
                 return p.playactions.FindAll(a => a.actionType == actionEnum.playcard && a.card.card.type == CardDB.cardtype.SPELL
-                    && (DamageTargetSpecialDatabase.ContainsKey(a.card.card.name) || DamageTargetDatabase.ContainsKey(a.card.card.name)
-                        || a.card.card.name == CardDB.cardName.lightningstorm || a.card.card.name == CardDB.cardName.elementaldestruction)).Count;
+                    && (DamageTargetSpecialDatabase.ContainsKey(a.card.card.name) || DamageTargetDatabase.ContainsKey(a.card.card.name) 
+                        || DamageAllEnemysDatabase.ContainsKey(a.card.card.name) || DamageHeroDatabase.ContainsKey(a.card.card.name)
+                        || DamageRandomDatabase.ContainsKey(a.card.card.name) || a.card.card.name == CardDB.cardName.elementaldestruction)).Count * 9;
             }
 
             // penalize playing shapeshift after other moves
@@ -3183,34 +3182,46 @@ namespace HREngine.Bots
         {
             priorityDatabase.Add(CardDB.cardName.acidmaw, 3);
             priorityDatabase.Add(CardDB.cardName.animatedarmor, 2);
-            priorityDatabase.Add(CardDB.cardName.archmageantonidas, 5);
+            priorityDatabase.Add(CardDB.cardName.archmageantonidas, 10);
             priorityDatabase.Add(CardDB.cardName.aviana, 5);
             priorityDatabase.Add(CardDB.cardName.brannbronzebeard, 4);
+            priorityDatabase.Add(CardDB.cardName.cloakedhuntress, 5);
             priorityDatabase.Add(CardDB.cardName.confessorpaletress, 7);
             priorityDatabase.Add(CardDB.cardName.crowdfavorite, 6);
             priorityDatabase.Add(CardDB.cardName.darkshirecouncilman, 4);
             priorityDatabase.Add(CardDB.cardName.direwolfalpha, 5);
             priorityDatabase.Add(CardDB.cardName.emperorthaurissan, 5);
+            priorityDatabase.Add(CardDB.cardName.fandralstaghelm, 6);
             priorityDatabase.Add(CardDB.cardName.flametonguetotem, 6);
+            priorityDatabase.Add(CardDB.cardName.flamewaker, 5);
+            priorityDatabase.Add(CardDB.cardName.frothingberserker, 1);
+            priorityDatabase.Add(CardDB.cardName.gadgetzanauctioneer, 1);
             priorityDatabase.Add(CardDB.cardName.grimpatron, 5);
             priorityDatabase.Add(CardDB.cardName.grimscaleoracle, 5);
             priorityDatabase.Add(CardDB.cardName.holychampion, 5);
+            priorityDatabase.Add(CardDB.cardName.knifejuggler, 4);
             priorityDatabase.Add(CardDB.cardName.kodorider, 6);
             priorityDatabase.Add(CardDB.cardName.kvaldirraider, 1);
-            priorityDatabase.Add(CardDB.cardName.knifejuggler, 4);
             priorityDatabase.Add(CardDB.cardName.leokk, 5);
+            priorityDatabase.Add(CardDB.cardName.malchezaarsimp, 1);
+            priorityDatabase.Add(CardDB.cardName.malganis, 10);
             priorityDatabase.Add(CardDB.cardName.manatidetotem, 5);
             priorityDatabase.Add(CardDB.cardName.mechwarper, 1);
+            priorityDatabase.Add(CardDB.cardName.moroes, 10);
             priorityDatabase.Add(CardDB.cardName.muklaschampion, 5);
             priorityDatabase.Add(CardDB.cardName.murlocknight, 5);
             priorityDatabase.Add(CardDB.cardName.murlocwarleader, 5);
             priorityDatabase.Add(CardDB.cardName.nexuschampionsaraad, 6);
             priorityDatabase.Add(CardDB.cardName.northshirecleric, 5);
             priorityDatabase.Add(CardDB.cardName.pintsizedsummoner, 3);
+            priorityDatabase.Add(CardDB.cardName.priestofthefeast, 3);
             priorityDatabase.Add(CardDB.cardName.prophetvelen, 5);
+            priorityDatabase.Add(CardDB.cardName.questingadventurer, 1);
+            priorityDatabase.Add(CardDB.cardName.ragnaroslightlord, 5);
             priorityDatabase.Add(CardDB.cardName.raidleader, 5);
             priorityDatabase.Add(CardDB.cardName.recruiter, 1);
             priorityDatabase.Add(CardDB.cardName.scavenginghyena, 5);
+            priorityDatabase.Add(CardDB.cardName.secretkeeper, 1);
             priorityDatabase.Add(CardDB.cardName.sorcerersapprentice, 3);
             priorityDatabase.Add(CardDB.cardName.southseacaptain, 5);
             priorityDatabase.Add(CardDB.cardName.stormwindchampion, 5);
@@ -3219,13 +3230,11 @@ namespace HREngine.Bots
             priorityDatabase.Add(CardDB.cardName.thunderbluffvaliant, 3);
             priorityDatabase.Add(CardDB.cardName.timberwolf, 3);
             priorityDatabase.Add(CardDB.cardName.tunneltrogg, 4);
+            priorityDatabase.Add(CardDB.cardName.violetillusionist, 10);
+            priorityDatabase.Add(CardDB.cardName.violetteacher, 1);
             priorityDatabase.Add(CardDB.cardName.warhorsetrainer, 5);
             priorityDatabase.Add(CardDB.cardName.warsongcommander, 2);
             priorityDatabase.Add(CardDB.cardName.wilfredfizzlebang, 1);
-            priorityDatabase.Add(CardDB.cardName.ragnaroslightlord, 5);
-            priorityDatabase.Add(CardDB.cardName.cloakedhuntress, 5);
-            priorityDatabase.Add(CardDB.cardName.moroes, 10);
-            priorityDatabase.Add(CardDB.cardName.priestofthefeast, 3);
         }
 
         private void setupAttackBuff()

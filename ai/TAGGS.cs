@@ -252,7 +252,8 @@
         SHAMAN,
         WARLOCK,
         WARRIOR,
-        DREAM
+        DREAM,
+        ALL
 
     }
 
